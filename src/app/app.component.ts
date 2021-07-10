@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { Map } from 'mapbox-gl';
 import GEO_CITY from '../assets/idn_city.geo.json.json';
 
 @Component({
