@@ -1,0 +1,25 @@
+<mgl-map [style]="'mapbox://styles/mapbox/streets-v9'" [zoom]="[zoom]"
+    [center]="[indonesia.latitde, indonesia.longitude]">
+    <mgl-geojson-source id="states" [data]="GEOJSON">
+    </mgl-geojson-source>
+    <mgl-layer id="state-fills" type="fill" source="states" [paint]="{
+        'fill-color': '#627BC1',
+        'fill-opacity': 0.5
+      }" (layerMouseMove)="activateHoverOn($event)" (layerMouseLeave)="disableHover()"></mgl-layer>
+
+    <mgl-layer id="state-borders" type="line" source="states" [paint]="{
+        'line-color': '#627BC1',
+        'line-width': 2
+      }">
+    </mgl-layer>
+
+    <mgl-layer id="state-fills-hover" type="fill" source="states" [paint]="{
+        'fill-color': '#627BC1',
+        'fill-opacity': 1
+      }" [filter]="hoverFilter">
+    </mgl-layer>
+
+    <mgl-popup *ngIf="selectedPoint" [lngLat]="selectedLatLong" (popupClose)="selectedPoint = null">
+        <span [innerHTML]="selectedPoint.properties.NAME_2"></span>
+    </mgl-popup>
+</mgl-map>
